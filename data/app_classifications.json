@@ -1,0 +1,10 @@
+{
+  "ollama app.exe": "idle",
+  "dcv2.exe": "idle",
+  "applicationframehost.exe": "idle",
+  "searchhost.exe": "other",
+  "notepad.exe": "writing_docs",
+  "photos.exe": "photo_apps",
+  "onedrive.exe": "browsing",
+  "netmod.exe": "idle"
+}

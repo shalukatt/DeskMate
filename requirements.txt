@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+psutil
+pywin32
+websockets
+requests

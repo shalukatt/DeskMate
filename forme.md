@@ -8,3 +8,7 @@ server/	The FastAPI orchestrator — receives events from the sensor, builds pro
 avatar/	The Electron app — the actual transparent floating window, sprite rendering, speech bubble, listens for WebSocket messages from the server
 assets/	Static files: PNGTuber sprite images now, Live2D model files later, any audio clips
 data/	Local storage — ChromaDB's memory database files, logs, anything persistent that isn't code
+
+#### terminal codes ####
+cd D:\Projects\DeskMate
+python sensor/watcher.py
