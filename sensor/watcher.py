@@ -98,7 +98,6 @@ VALID_STATES = {
     "system_utility",
     "screen_capture",
     "vpn",
-    "recycle_bin",
     "photo_apps",
     "video_apps",
     "ai_apps",
