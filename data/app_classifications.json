@@ -6,5 +6,7 @@
   "notepad.exe": "writing_docs",
   "photos.exe": "photo_apps",
   "onedrive.exe": "browsing",
-  "netmod.exe": "idle"
+  "netmod.exe": "idle",
+  "snippingtool.exe": "screen_capture",
+  "shellhost.exe": "other"
 }

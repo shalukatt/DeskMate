@@ -7,6 +7,7 @@ import psutil
 import requests
 
 CACHE_PATH = os.path.join("data", "app_classifications.json")
+SERVER_URL = "http://127.0.0.1:8000/event"
 
 HARDCODED = {
     # coding
@@ -223,7 +224,10 @@ def main():
         if state != last_state:
             print(f"[STATE CHANGE] {last_state} -> {state}  (process: {process_name})")
             last_state = state
-
+            try:
+                requests.post(SERVER_URL, json={"state": state, "process": process_name}, timeout=3)
+            except requests.exceptions.RequestException as e:
+                print(f"[SERVER POST FAILED] {e}")
         time.sleep(2)
 
 
