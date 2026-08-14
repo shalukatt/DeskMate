@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      overflow: hidden;
+      -webkit-app-region: drag; /* lets you drag the window by clicking the avatar */
+      user-select: none;
+    }
+
+    #sprite {
+      width: 280px;
+      height: 280px;
+      object-fit: contain;
+      display: block;
+    }
+
+    #speech-bubble {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      max-width: 260px;
+      background: white;
+      border: 2px solid #333;
+      border-radius: 12px;
+      padding: 8px 12px;
+      font-family: sans-serif;
+      font-size: 13px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="speech-bubble">Hi! I'm your companion.</div>
+  <img id="sprite" src="../assests/idle.png" alt="companion sprite">
+</body>
+</html>

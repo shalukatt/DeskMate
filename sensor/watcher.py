@@ -120,7 +120,6 @@ STATE_DESCRIPTIONS = """
 - system_utility: File Explorer, Settings, Task Manager, hardware control panels (e.g. MSI Center, motherboard/GPU utility software - these are NOT games even if the brand sounds gaming-related)
 - screen_capture: screen recording, screenshots, screen capture, Snipping Tool, OBS recording, capture utilities
 - vpn: VPN applications and VPN connection/management tools
-- recycle_bin: Windows Recycle Bin or applications specifically managing deleted/recycled files
 - photo_apps: photo viewing, photo organization, photo management, and photo gallery applications
 - video_apps: video players and applications primarily used to watch/play videos
 - ai_apps: AI assistants and AI applications such as Microsoft Copilot, ChatGPT, Claude, Gemini, Perplexity, etc.                                                               

@@ -27,6 +27,7 @@ class Event(BaseModel):
 # In-memory store for now — swap for ChromaDB once we hit Phase 4 (memory)
 latest_event: Optional[Event] = None
 event_log: list[Event] = []
+last_reply_time: Optional[float] = None
 
 def build_prompt(event: Event) -> str:
     return f"""{PERSONA}
@@ -65,7 +66,7 @@ def generate_companion_response(event: Event) -> dict:
 @app.post("/event")
 async def receive_event(event: Event):
     """Sensor calls this every time the active-window state changes."""
-    global latest_event
+    global latest_event,last_reply_time
  
     if not event.timestamp:
         event.timestamp = datetime.now().isoformat()
