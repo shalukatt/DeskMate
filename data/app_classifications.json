@@ -8,5 +8,6 @@
   "onedrive.exe": "browsing",
   "netmod.exe": "idle",
   "snippingtool.exe": "screen_capture",
-  "shellhost.exe": "other"
+  "shellhost.exe": "other",
+  "electron.exe": "idle"
 }

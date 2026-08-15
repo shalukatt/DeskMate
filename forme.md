@@ -12,3 +12,10 @@ data/	Local storage — ChromaDB's memory database files, logs, anything persist
 #### terminal codes ####
 cd D:\Projects\DeskMate
 python sensor/watcher.py
+uvicorn server.main:app --reload
+
+#### avatar ####
+
+npm init -y
+npm electron --save-dev
+npm start

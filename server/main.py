@@ -1,3 +1,4 @@
+from fastapi import WebSocket, WebSocketDisconnect
 from fastapi import FastAPI
 from pydantic import BaseModel
 from datetime import datetime
@@ -28,6 +29,8 @@ class Event(BaseModel):
 latest_event: Optional[Event] = None
 event_log: list[Event] = []
 last_reply_time: Optional[float] = None
+connected_clients: list[WebSocket] = []
+
 
 def build_prompt(event: Event) -> str:
     return f"""{PERSONA}
@@ -87,6 +90,7 @@ async def receive_event(event: Event):
         reply = generate_companion_response(event)
         last_reply_time = now
         print(f"[COMPANION] ({reply['emotion']}) {reply['text']}")
+        await broadcast_to_avatar(reply) # calls broadcast_to_avatar() whenever a reply is generated
  
     # Memory lookup (Phase 4) will get injected into build_prompt() before this call, later.
     return {"status": "ok", "received": event, "reply": reply}
@@ -103,7 +107,29 @@ async def get_state():
 async def get_events(limit: int = 20):
     """Recent event history, useful for debugging and later for the nightly summary job."""
     return event_log[-limit:]
- 
+
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    connected_clients.append(websocket)
+    print(f"[WS] Avatar connected. Total clients: {len(connected_clients)}")
+    try:
+        while True:
+            await websocket.receive_text()
+    except WebSocketDisconnect:
+        connected_clients.remove(websocket)
+        print(f"[WS] Avatar disconnected. Total clients: {len(connected_clients)}")
+
+async def broadcast_to_avatar(reply: dict):
+    """Push a companion reply to every connected avatar window."""
+    disconnected = []
+    for client in connected_clients:
+        try:
+            await client.send_json(reply)
+        except Exception:
+            disconnected.append(client)
+    for client in disconnected:
+        connected_clients.remove(client)
  
 if __name__ == "__main__":
     uvicorn.run("server.main:app", host="127.0.0.1", port=8000, reload=True)
