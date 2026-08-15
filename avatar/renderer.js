@@ -3,12 +3,12 @@ const bubble = document.getElementById('speech-bubble');
 
 // Map each emotion to a sprite file. Add more as you add more sprites later.
 const EMOTION_SPRITES = {
-  happy: '../assets/happy.png',
-  excited: '../assets/excited.png',
-  scolding: '../assets/approve.png', // placeholder until you add a proper "scolding" sprite
-  sleepy: '../assets/idle.png',      // placeholder until you add a proper "sleepy" sprite
-  neutral: '../assets/idle.png',
-  curious: '../assets/happy.png',    // placeholder - LLM sometimes invents emotions outside our list
+  happy: '../assests/happy.png',
+  excited: '../assests/excited.png',
+  scolding: '../assests/approve.png', // placeholder until you add a proper "scolding" sprite
+  sleepy: '../assests/idle.png',      // placeholder until you add a proper "sleepy" sprite
+  neutral: '../assests/idle.png',
+  curious: '../assests/happy.png',    // placeholder - LLM sometimes invents emotions outside our list
 };
 
 let bubbleTimeout = null;
@@ -19,7 +19,9 @@ function showReply(reply) {
   }
 
   // Update sprite (fall back to idle if the emotion isn't mapped)
-  sprite.src = EMOTION_SPRITES[reply.emotion] || '../assets/idle.png';
+  const resolvedPath = EMOTION_SPRITES[reply.emotion] || '../assests/idle.png';
+  console.log('[DEBUG] emotion:', reply.emotion, '-> path:', resolvedPath);
+  sprite.src = resolvedPath;
 
   // Show the speech bubble
   bubble.textContent = reply.text;
@@ -29,7 +31,7 @@ function showReply(reply) {
   if (bubbleTimeout) clearTimeout(bubbleTimeout);
   bubbleTimeout = setTimeout(() => {
     bubble.style.display = 'none';
-    sprite.src = '../assets/idle.png';
+    sprite.src = '../assests/idle.png';
   }, 6000);
 }
 
