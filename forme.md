@@ -15,7 +15,7 @@ python sensor/watcher.py
 uvicorn server.main:app --reload
 
 #### avatar ####
-
+cd avatar
 npm init -y
 npm electron --save-dev
 npm start
