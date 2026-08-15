@@ -19,9 +19,7 @@ function showReply(reply) {
   }
 
   // Update sprite (fall back to idle if the emotion isn't mapped)
-  const resolvedPath = EMOTION_SPRITES[reply.emotion] || '../assests/idle.png';
-  console.log('[DEBUG] emotion:', reply.emotion, '-> path:', resolvedPath);
-  sprite.src = resolvedPath;
+  sprite.src = EMOTION_SPRITES[reply.emotion] || '../assests/idle.png';
 
   // Show the speech bubble
   bubble.textContent = reply.text;
